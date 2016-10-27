@@ -54,7 +54,7 @@ _
 };
 sub dump_getopt_long_descriptive_script {
     require Capture::Tiny;
-    #require Getopt::Long::Descriptive::Util;
+    require Getopt::Long::Descriptive::Util;
     require UUID::Random;
 
     my %args = @_;
@@ -92,9 +92,9 @@ sub dump_getopt_long_descriptive_script {
                         "Getopt::Long::Descriptive, but I got an error in eval-ing ".
                             "captured option spec: $@, raw capture: <<<$1>>>"];
         }
-        if (ref($spec) ne 'HASH') {
+        if (ref($spec) ne 'ARRAY') {
             return [500, "Script '$filename' looks like using ".
-                        "Getopt::Long::Descriptive, but I didn't get a hash option spec, ".
+                        "Getopt::Long::Descriptive, but I didn't get an array spec, ".
                             "raw capture: stdout=<<$stdout>>"];
         }
     } else {
